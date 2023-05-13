@@ -6,7 +6,11 @@ const logtailMiddleware = (req, res, next) => {
 
   res.on('finish', () => {
     const responseTime = Date.now() - startTime;
-    const headers = Object.entries(req.headers).map(([key, value]) => ({ key, value })); // Convert headers to array of objects
+
+    const headers = {};
+    for (const [key, value] of Object.entries(req.headers)) {
+      headers[key] = value;
+    }
 
     logtail.info({
       method: req.method,
