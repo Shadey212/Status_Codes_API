@@ -1,2 +1,7 @@
 # .gitignore
+
+# Logtail configuration file
+logtail.config.js
+
+# .env file (if you're using dotenv)
 .env

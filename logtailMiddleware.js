@@ -6,9 +6,12 @@ const logtailMiddleware = (req, res, next) => {
 
   res.on('finish', () => {
     const responseTime = Date.now() - startTime;
-    logtail.info(`${req.method} ${req.path}`, {
+    logtail.info({
+      method: req.method,
+      path: req.path, // Log the request path separately
       status: res.statusCode,
       duration: responseTime,
+      ip: req.ip, // Include the IP address in the log message
     });
   });
 
